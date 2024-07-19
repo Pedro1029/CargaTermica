@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id   String @id @default(uuid())
+  nome String
+}
+
+model QuestionarioCargaTermica {
+  id                      String  @id @default(uuid())
+  camaraFrigorifica       String
+  largura                 Decimal
+  comprimento             Decimal
+  altura                  Decimal
+  qtdPortas               Int
+  alturaVaoPorta          Decimal
+  larguraVaoPorta         Decimal
+  tempoAberturaPorta      Decimal
+  massaProdutoEst         Decimal
+  massaProdutoProc        Decimal
+  umidadeRelativa         Decimal
+  produto                 String
+  tempEntradaProd         Decimal
+  tempSaidaProd           Decimal
+  tempInternaAmb          Decimal
+  tempExternaAmb          Decimal
+  tempoProcesso           Decimal
+  isolante                String
+  espessuraParede         Decimal
+  isolamentoPiso          String
+  espessuraIsolamentoPiso Decimal
+  tempEmbaixoIsolante     Decimal
+  equipamentos            String
+  tempoEquipamentoDia     Decimal
+  pessoas                 Int
+  tempoTrabalho           Decimal
+  margemSeguranca         Decimal
+  processo                String
+}
+
+model QuestionarioRelacaoCargaTermica {
+  id                    String  @id @default(uuid())
+  cargaTerInfil         Decimal
+  cargaTerProdMov       Decimal
+  cargaTerProdEst       Decimal
+  cargaTerPenParedeTeto Decimal
+  cargaTerPenPiso       Int
+  cargaTerPessoa        Decimal
+  cargaTerEquip         Decimal
+  cargaTerMotorEvapo    Decimal
+  cargaTerIluminacao    Decimal
+  margemSeguranca       Decimal
+  cargaTerTotal         Decimal
+  cargaTerTotalHora     Decimal
+}
+
+model QuestionarioEstimativaEstoque {
+  id               String  @id @default(uuid())
+  descricao        String
+  estoque          Decimal
+  movimentacao     Decimal
+  tipoMovimentacao String
+}
